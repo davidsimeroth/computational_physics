@@ -24,25 +24,64 @@ int main (int argc, char *argv[]){
  float * xn, yn, zn, tn, qn; //arrays for x, y, z, t, and q
  string line; //for incoming lines
 
- if (argc != 2 && argc != 3) // make sure they gave me a file to work with 
-  cout << 'Usage: ' << argv[0] << ' <boundary file> [<band file>]' << endl;
- else 
- {
+ if (argc != 2 && argc != 3){ // make sure they gave me a file to work with 
+  cout << 'Usage: ' << argv[0] << ' <boundary file> [<band file>]' << endl;}
+ else{
   ifstream dat (argv[1]);
-  if (!dat.is_open()) cout << 'Error opening file!' << endl;
-  else 
-  {
-   while (getline (dat,line)) 
-   {
+  if{
+   (!dat.is_open()) cout << 'Error opening file!' << endl;}
+  else{
+   while (getline (dat,line)){
     ++row
     if (row==1);
-    else if (row==2)
-    {
+    else if (row==2){
      line = line + " "
      nn = count(line) - 2;
-     xx = find
+     xx = line.find("x "); //find "x"
+     if (xx == line.size()){ //if you don't find it...
+      cout << 'Data file missing x coordinates!' << endl; //let me know and then die
+      return 0;
+     }
+     else{
+      xx = nn - count(line,xx) + 1; //otherwise, let me know which position it's in
+     }
+     yy = line.find("y "); //find "y"
+     if (yy == line.size()){
+      cout << 'Data file missing y coordinates!' << endl;
+      return 0;
+     }
+     else{
+      yy = nn - count(line,yy) + 1;
+     }
+     zz = line.find("z "); //find "z"
+     if (zz == line.size()){
+      cout << 'Data file missing z coordinates!' << endl;
+      return 0;
+     }
+     else{
+      zz = nn - count(line,zz) + 1;
+     }
+     tt = line.find("tt "); //find temperature
+     if (tt != line.size()){ //if it exists in the data file,
+      tb = true; //store it as true
+      tt = nn - count(line,tt) + 1;
+     }
+     qq = line.find("qrad "); //find surface flux
+     if (qq == line.size() && !tb){ //if we don't have flux or temp,
+      cout << 'Data file missing temperature and radiation!' << endl;
+      return 0;
+     }
+     else if (qq != line.size()){
+      qb = true;
+      qq = nn - count(line,qq) + 1;
+     }
     }
-	}
+    else if (row==3){
+     
+    }
+   }
+  }
+ }
    dat.close();
    //qn=input('number of variables in output'); % TO BE READ FROM HEADER
    //i =input('number of points in output');    % ""
