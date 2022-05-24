@@ -10,10 +10,6 @@ R_1ps=@(lam) (1-eps_l(lam))./eps_l(lam);
 
 R_12r=@(lam) 1.*lam./lam;
 
-% eta=@(lam) (lam<l_gap).*lam./l_gap;
-
-% R12e=@(lam) 1./(eta(lam)+eps)./e_2p(lam);
-
 R_2ms=@(lam) (1-eps_2(lam))./eps_2(lam);
 
 E_1b=@(lam) specEbb(T_1,lam);

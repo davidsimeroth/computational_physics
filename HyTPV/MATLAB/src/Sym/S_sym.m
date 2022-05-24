@@ -6,7 +6,7 @@ EQ12r = Q1p == (J1p - J2m)/R12r;
 EQ21r = Q2m == (J2m - J1p)/R12r;
 EQ2sm = Q2m == (E2b - J2m)/R2ms;
 
-slveq = [EQ1sp Eq12r EQ21r EQ2sm];
+slveq = [EQ1sp EQ12r EQ21r EQ2sm];
 slvmd = [J1p J2m];
 slvtt = [Q1p slvmd Q2m];
 slvqt = [E1b slvmd Q2m];

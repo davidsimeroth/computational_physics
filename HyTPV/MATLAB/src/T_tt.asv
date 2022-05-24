@@ -12,9 +12,6 @@ R_1ps =@(lam) (1-eps_lp(lam))./eps_lp(lam);
 R_12r=@(lam) 1.*lam./lam;
 
 eps_2m=@(lam) interp1(l_2m,e_2m,lam,'makima',min(e_2m));
-eta_2=@(lam) (lam<l_2g).*lam./l_2g;
-R_12e=@(lam) 1./(eta_2(lam)+eps)./eps_2m(lam);
-
 R_2ms=@(lam) (1-eps_2m(lam))./eps_2m(lam);
 E_2b=@(lam) specEbb(T_2,lam);
 
